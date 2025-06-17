@@ -7,9 +7,10 @@ import { Product } from './product-data';
 
 export default function ProductsList({ products, initialCartProducts = [] }: { products: Product[]; initialCartProducts: Product[] }) {
   const [cartProducts, setCartProducts] = useState(initialCartProducts);
+  const baseUrl = process.env.SITE_URL || 'http://localhost:3000';
 
   async function addToCart(productId: string) {
-    const response = await fetch(process.env.SITE_URL + '/api/users/2/cart', {
+    const response = await fetch(`${baseUrl}/api/users/2/cart`, {
       method: 'POST',
       body: JSON.stringify({
         productId,
@@ -23,7 +24,7 @@ export default function ProductsList({ products, initialCartProducts = [] }: { p
   }
 
   async function removeFromCart(productId: string) {
-    const response = await fetch(process.env.SITE_URL + '/api/users/2/cart', {
+    const response = await fetch(`${baseUrl}/api/users/2/cart`, {
       method: 'DELETE',
       body: JSON.stringify({
         productId,
