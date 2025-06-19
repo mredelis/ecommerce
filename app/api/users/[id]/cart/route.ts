@@ -2,13 +2,7 @@ import { NextRequest } from 'next/server';
 import { products } from '@/app/product-data';
 import { connectToDb } from '@/app/api/db';
 
-type ShoppingCart = Record<string, string[]>;
-
-const carts: ShoppingCart = {
-  '1': ['123', '234'],
-  '2': ['345', '456'],
-  '3': ['234'],
-};
+// type ShoppingCart = Record<string, string[]>;
 
 type Params = {
   id: string;
@@ -54,9 +48,7 @@ export async function POST(request: NextRequest, { params }: { params: Params })
   const body: CartBody = await request.json();
   const productId = body.productId;
 
-  const updatedCart = await db
-    .collection('carts')
-    .findOneAndUpdate({ userId }, { $push: { cartIds: productId } }, { upsert: true, returnDocument: 'after' });
+  const updatedCart = await db.collection('carts').findOneAndUpdate({ userId }, { $push: { cartIds: productId } }, { upsert: true, returnDocument: 'after' });
 
   const cartProducts = await db
     .collection('products')
@@ -78,9 +70,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Params 
   const body = await request.json();
   const productId = body.productId;
 
-  const updatedCart = await db
-    .collection('carts')
-    .findOneAndUpdate({ userId }, { $pull: { cartIds: productId } }, { returnDocument: 'after' });
+  const updatedCart = await db.collection('carts').findOneAndUpdate({ userId }, { $pull: { cartIds: productId } }, { returnDocument: 'after' });
 
   if (!updatedCart) {
     return new Response(JSON.stringify([]), {
