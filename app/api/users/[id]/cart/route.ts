@@ -1,5 +1,4 @@
 import { NextRequest } from 'next/server';
-import { products } from '@/app/product-data';
 import { connectToDb } from '@/app/api/db';
 
 // type ShoppingCart = Record<string, string[]>;
