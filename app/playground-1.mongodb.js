@@ -10,14 +10,14 @@
 // https://www.mongodb.com/docs/mongodb-vscode/playgrounds/
 
 // Select the database to use.
-use( 'ecommernce-nextjs' );
+// use( 'ecommernce-nextjs' );
 
-db.getCollection( 'carts' ).insertMany( [
-  { userId: '1', cartIds: [ '123', '234' ] },
-  { userId: '2', cartIds: [ '345', '456' ] },
-] );
+// db.getCollection( 'carts' ).insertMany( [
+//   { userId: '1', cartIds: [ '123', '234' ] },
+//   { userId: '2', cartIds: [ '345', '456' ] },
+// ] );
 
-console.log(db.getCollection('carts').find({}))
+// console.log(db.getCollection('carts').find({}))
 
 // Insert a few documents into the sales collection.
 // db.getCollection('products').insertMany([{
